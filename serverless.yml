@@ -1,0 +1,27 @@
+
+
+service: test-node-factorial-app # NOTE: *******
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+
+functions:
+  factorial:
+    handler: handler.factorial
+    events:
+     - http:
+        path: get/factorial
+        method: get
+
+plugins:
+  - serverless-offline
+
+serverless-offline:
+    # stage: ${self:provider.stage}
+    port: 3000
+    # region: ${self:provider.region}
+    corsAllowOrigin : '*' 
+    # corsAllowHeaders : 'accept,content-type,x-api-key'
+    # corsExposedHeaders : 'WWW-Authenticate,Server-Authorization'
+
